@@ -2,6 +2,8 @@
 
 **SOEN 357 — Concordia University — Winter 2026**
 
+**Repository:** [github.com/wassdak/SOEN357CatchUpProject](https://github.com/wassdak/SOEN357CatchUpProject)
+
 CatchUp is a React prototype for an A/B user study: **Version A** is a manual study planner; **Version B** generates a day-by-day recovery plan with client-side rules (no server). The landing page shows the study scenario; participants open the version they were assigned, then use **Submit & take survey** to open the post-task questionnaire in a new tab.
 
 **Tech:** React 18 (Create React App), CSS. Post-task URL: [`src/surveyUrl.js`](src/surveyUrl.js) (default: team Google Form).
