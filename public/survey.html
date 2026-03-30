@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CatchUp — Post-task survey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0c0f14;
+        --surface: #13181f;
+        --surface2: #1a2130;
+        --border: #243044;
+        --accent: #4fffb0;
+        --accent2: #ff6b6b;
+        --text: #e8edf5;
+        --text-muted: #6b7a96;
+        --text-dim: #3d4f6b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'DM Sans', system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        padding: 32px 20px 48px;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        margin: 0 0 8px;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        color: var(--text-muted);
+        margin-bottom: 28px;
+        font-size: 14px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+      fieldset {
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+      legend {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+      .hint {
+        font-size: 12px;
+        color: var(--text-dim);
+        margin-bottom: 12px;
+      }
+      label.block {
+        display: block;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      label.block input {
+        margin-right: 10px;
+      }
+      .likert {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-top: 8px;
+      }
+      .likert label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        min-width: 44px;
+        padding: 8px 6px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface2);
+        cursor: pointer;
+        font-size: 13px;
+        color: var(--text-muted);
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .likert input {
+        margin: 0;
+      }
+      .likert label:has(input:checked) {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(79, 255, 176, 0.08);
+      }
+      button[type='submit'] {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        width: 100%;
+        padding: 14px 24px;
+        border: none;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--bg);
+        cursor: pointer;
+        margin-top: 8px;
+        transition: filter 0.2s, transform 0.2s;
+      }
+      button[type='submit']:hover {
+        filter: brightness(1.05);
+      }
+      button[type='submit']:active {
+        transform: scale(0.99);
+      }
+      #thankyou {
+        display: none;
+        text-align: center;
+        padding: 40px 24px;
+      }
+      #thankyou.visible {
+        display: block;
+      }
+      #form-wrap.hidden {
+        display: none;
+      }
+      .error {
+        color: var(--accent2);
+        font-size: 13px;
+        margin-top: 8px;
+      }
+      a.back {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 24px;
+      }
+      a.back:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>CatchUp — Post-task survey</h1>
+      <p class="subtitle">
+        SOEN 357 · Thank you for using the prototype. This takes about two minutes. Your answers help us compare the two
+        planning interfaces.
+      </p>
+
+      <div id="form-wrap">
+        <form id="survey-form" novalidate>
+          <div class="card">
+            <fieldset>
+              <legend>Which interface did you use?</legend>
+              <p class="hint">Choose the version you were assigned.</p>
+              <label class="block"><input type="radio" name="version" value="A" required /> Version A — Standard Planner</label>
+              <label class="block"><input type="radio" name="version" value="B" /> Version B — CatchUp AI</label>
+            </fieldset>
+          </div>
+
+          <div class="card">
+            <fieldset>
+              <legend>How stressed do you feel about catching up right now?</legend>
+              <p class="hint">1 = not at all stressed · 7 = extremely stressed</p>
+              <div class="likert" role="radiogroup" aria-label="Stress level 1 to 7">
+                <label><input type="radio" name="stress" value="1" required />1</label>
+                <label><input type="radio" name="stress" value="2" />2</label>
+                <label><input type="radio" name="stress" value="3" />3</label>
+                <label><input type="radio" name="stress" value="4" />4</label>
+                <label><input type="radio" name="stress" value="5" />5</label>
+                <label><input type="radio" name="stress" value="6" />6</label>
+                <label><input type="radio" name="stress" value="7" />7</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="card">
+            <fieldset>
+              <legend>How confident are you that you could prepare well for your exams with this kind of plan?</legend>
+              <p class="hint">1 = not at all confident · 7 = very confident</p>
+              <div class="likert" role="radiogroup" aria-label="Confidence level 1 to 7">
+                <label><input type="radio" name="confidence" value="1" required />1</label>
+                <label><input type="radio" name="confidence" value="2" />2</label>
+                <label><input type="radio" name="confidence" value="3" />3</label>
+                <label><input type="radio" name="confidence" value="4" />4</label>
+                <label><input type="radio" name="confidence" value="5" />5</label>
+                <label><input type="radio" name="confidence" value="6" />6</label>
+                <label><input type="radio" name="confidence" value="7" />7</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="card">
+            <fieldset>
+              <legend>I found the interface easy to use.</legend>
+              <p class="hint">1 = strongly disagree · 5 = strongly agree</p>
+              <div class="likert" role="radiogroup" aria-label="Ease of use">
+                <label><input type="radio" name="ease" value="1" required />1</label>
+                <label><input type="radio" name="ease" value="2" />2</label>
+                <label><input type="radio" name="ease" value="3" />3</label>
+                <label><input type="radio" name="ease" value="4" />4</label>
+                <label><input type="radio" name="ease" value="5" />5</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="card">
+            <label for="comments" style="font-family: Syne, sans-serif; font-weight: 700; display: block; margin-bottom: 8px"
+              >Anything else we should know? <span style="font-weight: 400; color: var(--text-muted)">(optional)</span></label
+            >
+            <textarea
+              id="comments"
+              name="comments"
+              rows="3"
+              style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-family: inherit; font-size: 14px; resize: vertical"
+              placeholder="Optional feedback…"
+            ></textarea>
+          </div>
+
+          <p id="form-error" class="error" role="alert" aria-live="polite"></p>
+          <button type="submit">Submit responses</button>
+        </form>
+      </div>
+
+      <div id="thankyou">
+        <p style="font-size: 48px; margin-bottom: 16px" aria-hidden>✓</p>
+        <h2 style="font-family: Syne, sans-serif; font-size: 1.5rem; margin-bottom: 12px">Thank you</h2>
+        <p style="color: var(--text-muted); margin-bottom: 8px">Your responses were recorded for this session.</p>
+        <p style="color: var(--text-dim); font-size: 13px">
+          <strong>Note:</strong> This page stores nothing on a server. For formal data collection, your team should link a
+          Google Form instead and export responses from Google.
+        </p>
+        <a class="back" href="/">← Back to CatchUp</a>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var form = document.getElementById('survey-form');
+        var err = document.getElementById('form-error');
+        var formWrap = document.getElementById('form-wrap');
+        var thank = document.getElementById('thankyou');
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          err.textContent = '';
+          if (!form.checkValidity()) {
+            err.textContent = 'Please answer all required questions.';
+            return;
+          }
+          var data = new FormData(form);
+          var payload = {};
+          data.forEach(function (v, k) {
+            payload[k] = v;
+          });
+          console.log('[CatchUp survey]', payload);
+          try {
+            sessionStorage.setItem(
+              'catchup_survey_last',
+              JSON.stringify({ ...payload, submittedAt: new Date().toISOString() })
+            );
+          } catch (x) {}
+          formWrap.classList.add('hidden');
+          thank.classList.add('visible');
+          thank.setAttribute('tabindex', '-1');
+          thank.focus();
+        });
+      })();
+    </script>
+  </body>
+</html>
