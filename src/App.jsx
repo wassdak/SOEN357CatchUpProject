@@ -15,3 +15,5 @@ export default function App() {
   if (screen === 'B') return <VersionB onDone={() => setScreen('landing')} />;
   return <Landing onSelect={(v) => setScreen(v)} />;
 }
+
+// line
