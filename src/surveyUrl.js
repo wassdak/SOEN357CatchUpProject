@@ -6,7 +6,8 @@
  * **Override:** set `REACT_APP_SURVEY_URL` in `.env.local` (e.g. `/survey.html` for local demo only).
  * Restart `npm start` after changing env; set the same variable in CI/hosting for production builds.
  */
-const TEAM_GOOGLE_FORM_URL = 'https://forms.gle/HegWvg121bHZbvWu7';
+const TEAM_GOOGLE_FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSeFgob-_1v3mejFEm0eCu1-aBtQmroTrDvjg3GckG4pGESDAg/viewform?usp=publish-editor';
 
 const fromEnv = process.env.REACT_APP_SURVEY_URL;
 export const SURVEY_URL =
